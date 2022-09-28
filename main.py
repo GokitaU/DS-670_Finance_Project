@@ -87,16 +87,67 @@ with title_col3:
     else:
         st.write("No Data Found!")
 
+title_col1,title_col2,title_col3 = st.columns([3,3,3])
+with title_col1:
+    st.subheader(ticker_name1)
+    df1 = ticker_details1.drop(["adjclose","volume","ticker"], axis=1)
+    st.line_chart(df1)
+with title_col2:
+    st.subheader(ticker_name2)
+    df2 = ticker_details2.drop(["adjclose","volume","ticker"], axis=1)
+    st.line_chart(df2)
+with title_col3:
+    st.subheader(ticker_name3)
+    df3 = ticker_details1.drop(["adjclose","volume","ticker"], axis=1)
+    st.line_chart(df3)
+
 def get_charts(stock_details1,stock_details2,stock_details3):
-     # line chart for open
-        """
-        df = pd.DataFrame({
-        'date': stock_details1['date'],
-        'open stock_price': stock_details1['open']
-        })
-        st.line_chart(df)
-        """
-        st.dataframe(stock_details1, 1500, 300)
-        #st.line_chart(stock_details1)
+    # line chart for open
+    st.subheader('Open Price Stock Data')
+    df1 = stock_details1.drop(["high","low","close","adjclose","volume","ticker"], axis=1)
+    df1.rename(columns={'open': ticker_name1}, inplace=True)
+    df2 = stock_details2.drop(["high","low","close","adjclose","volume","ticker"], axis=1)
+    df2.rename(columns={'open': ticker_name2}, inplace=True)
+    df3 = stock_details3.drop(["high","low","close","adjclose","volume","ticker"], axis=1)
+    df3.rename(columns={'open': ticker_name3}, inplace=True)
+    df = pd.concat([df1, df2, df3], axis=1)
+    st.dataframe(df, 1500, 300)
+    st.line_chart(df)
+
+    # line chart for low
+    st.subheader('Low Price Stock Data')
+    df1 = stock_details1.drop(["high","open","close","adjclose","volume","ticker"], axis=1)
+    df1.rename(columns={'low': ticker_name1}, inplace=True)
+    df2 = stock_details2.drop(["high","open","close","adjclose","volume","ticker"], axis=1)
+    df2.rename(columns={'low': ticker_name2}, inplace=True)
+    df3 = stock_details3.drop(["high","open","close","adjclose","volume","ticker"], axis=1)
+    df3.rename(columns={'low': ticker_name3}, inplace=True)
+    df = pd.concat([df1, df2, df3], axis=1)
+    st.dataframe(df, 1500, 300)
+    st.line_chart(df)
+
+    # line chart for high
+    st.subheader('High Price Stock Data')
+    df1 = stock_details1.drop(["low","open","close","adjclose","volume","ticker"], axis=1)
+    df1.rename(columns={'high': ticker_name1}, inplace=True)
+    df2 = stock_details2.drop(["low","open","close","adjclose","volume","ticker"], axis=1)
+    df2.rename(columns={'high': ticker_name2}, inplace=True)
+    df3 = stock_details3.drop(["low","open","close","adjclose","volume","ticker"], axis=1)
+    df3.rename(columns={'high': ticker_name3}, inplace=True)
+    df = pd.concat([df1, df2, df3], axis=1)
+    st.dataframe(df, 1500, 300)
+    st.line_chart(df)
+
+    # line chart for close
+    st.subheader('Close Price Stock Data')
+    df1 = stock_details1.drop(["high","open","low","adjclose","volume","ticker"], axis=1)
+    df1.rename(columns={'close': ticker_name1}, inplace=True)
+    df2 = stock_details2.drop(["high","open","low","adjclose","volume","ticker"], axis=1)
+    df2.rename(columns={'close': ticker_name2}, inplace=True)
+    df3 = stock_details3.drop(["high","open","low","adjclose","volume","ticker"], axis=1)
+    df3.rename(columns={'close': ticker_name3}, inplace=True)
+    df = pd.concat([df1, df2, df3], axis=1)
+    st.dataframe(df, 1500, 300)
+    st.line_chart(df)
 
 get_charts(ticker_details1,ticker_details2,ticker_details3)
