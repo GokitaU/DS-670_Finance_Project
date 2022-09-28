@@ -96,12 +96,7 @@ def get_charts(stock_details1,stock_details2,stock_details3):
         })
         st.line_chart(df)
         """
-        st.line_chart(stock_details1)
+        st.dataframe(stock_details1, 1500, 300)
+        #st.line_chart(stock_details1)
 
-title_col1,title_col2,title_col3 = st.columns([3,3,3])
-with title_col1:
-    get_charts(ticker_details1,ticker_details2,ticker_details3)
-with title_col2:
-    print("")
-with title_col3:
-    print("")
+get_charts(ticker_details1,ticker_details2,ticker_details3)
