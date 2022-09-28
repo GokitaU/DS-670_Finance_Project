@@ -55,15 +55,20 @@ with title_col1:
 with title_col2:
     en_date = st.date_input('End Date :',currentDate)
 with title_col3:
-    if st.button('Compare'):
-        print("Compare pressed!")
-    else:
-        print("Compare not pressed!")
+    interval_option = st.selectbox(
+        'Time Interval',
+        ('Day', 'Week', 'Month'))
 
+if interval_option == "Week":
+    interval_option = "1wk"
+if interval_option == "Month":
+    interval_option = "1mo"
+else :
+    interval_option = "1d"
 
 title_col1,title_col2,title_col3 = st.columns([3,3,3])
 with title_col1:
-    ticker_details1 = get_data(ticker_name1, start_date=st_date, end_date=en_date, index_as_date = True)
+    ticker_details1 = get_data(ticker_name1, start_date=st_date, end_date=en_date, index_as_date = True, interval=interval_option)
     if (len(ticker_details1) > 0):
         # display the details of stock 
         st.subheader(f'{ticker_name1} Stock Data')
@@ -71,7 +76,7 @@ with title_col1:
     else:
         st.write("No Data Found!")
 with title_col2:
-    ticker_details2= get_data(ticker_name2, start_date=st_date, end_date=en_date, index_as_date = True)
+    ticker_details2= get_data(ticker_name2, start_date=st_date, end_date=en_date, index_as_date = True, interval=interval_option)
     if (len(ticker_details2) > 0):
         # display the details of stock 
         st.subheader(f'{ticker_name2} Stock Data')
@@ -79,7 +84,7 @@ with title_col2:
     else:
         st.write("No Data Found!")
 with title_col3:
-    ticker_details3= get_data(ticker_name3, start_date=st_date, end_date=en_date, index_as_date = True)
+    ticker_details3= get_data(ticker_name3, start_date=st_date, end_date=en_date, index_as_date = True, interval=interval_option)
     if (len(ticker_details3) > 0):
         # display the details of stock 
         st.subheader(f'{ticker_name3} Stock Data')
