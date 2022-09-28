@@ -1,6 +1,14 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        #MainMenu {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
+
 # bootstrap 4 collapse example
 components.html(
     """
