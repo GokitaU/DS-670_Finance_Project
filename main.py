@@ -89,11 +89,14 @@ with title_col3:
 
 def get_charts(stock_details1,stock_details2,stock_details3):
      # line chart for open
+        """
         df = pd.DataFrame({
         'date': stock_details1['date'],
         'open stock_price': stock_details1['open']
         })
         st.line_chart(df)
+        """
+        st.line_chart(stock_details1)
 
 title_col1,title_col2,title_col3 = st.columns([3,3,3])
 with title_col1:
